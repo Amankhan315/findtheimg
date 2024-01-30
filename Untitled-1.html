@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <style>
+        * {
+            margin: 0;
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        .main {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: column;
+            /* border: 1px solid; */
+        }
+
+        .box {
+            height: 13vh;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            /* border: 1px solid; */
+        }
+
+        .headingbox {
+            height: 8vh;
+            width: 90%;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 25px;
+            font-weight: 700;
+            /* border: 1px solid; */
+        }
+
+        .bt {
+            height: 7vh;
+            width: 30vh;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 20px;
+            font-weight: 700;
+            background-color: rgb(184, 134, 11);
+            border-radius: 10px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .bigbox {
+            height: 90vh;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            box-shadow: 20px 10px 10px  gray;
+            /* border: 1px solid; */
+        }
+        
+        .show {
+            opacity: 1;
+        }
+
+        .emptybox {
+            height: 150px;
+            width: 150px;
+            border-radius: 10px;
+            background-color: black;
+            position: relative;
+            transition: all 0.3s linear;
+            box-shadow: 20px 10px 10px  gray;
+            /* border: 1px solid; */
+        }
+
+
+
+
+
+        .boxes {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            /* background-color: black; */
+            background-image: url(./2.jpg);
+            background-size: cover;
+            transition: all 0.3s linear;
+            visibility: hidden;
+            border-radius: 10px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="box">
+            <div class="headingbox">Find the IMAGE behind the black box...</div>
+            <button class="bt">Lets's Start</button>
+        </div>
+        <div class="bigbox">
+            <div class="emptybox"></div>
+            <div class="emptybox"></div>
+            <div class="emptybox"></div>
+            <div class="emptybox"></div>
+            <div class="emptybox"></div>
+            <div class="emptybox"></div>
+            <div class="emptybox"></div>
+            <div class="emptybox"></div>
+            <div class="emptybox"></div>
+        </div>
+    </div>
+
+    <script>
+        let bt1 = document.querySelector(".bt")
+        let biggi = document.querySelector(".bigbox")
+        let emp = document.querySelectorAll(".emptybox")
+        console.log(emp);
+
+        let count = 1
+
+        bt1.addEventListener("click", function () {
+
+            biggi.classList.add("show")
+
+
+
+
+
+            let num = Math.floor(Math.random() * emp.length)
+            let div = document.createElement("div");
+            div.classList.add("boxes")
+            emp[num].appendChild(div)
+
+            emp.forEach(function (w) {
+                w.addEventListener("click", function () {
+
+                    if (w == emp[num]) {
+
+                        div.style.visibility = "visible";
+                        w.style.backgroundColor = "black";
+                        w.style.transform = "rotateY(180deg)";
+
+                        count++
+
+                        let message;
+                        message = "Congratulation!  You Find the Image in" + " " + count + "th" + " " + "Guesses";
+    
+                        alert(message)
+
+                        setTimeout(() => {
+                            location.reload()
+                        }, 1000);
+                    }
+                    else {
+
+                        w.style.backgroundImage = "url(99b63fbe-befa-416f-9c0d-682d243ca120.jpg)";
+                        w.style.backgroundSize = "cover";
+                        w.style.transform = "rotateY(180deg)";
+
+                    }
+
+                })
+
+            })
+
+        })
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
